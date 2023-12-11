@@ -1,38 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FrontPageComponent } from './modules/front-page/front-page.component';
-import { LogsComponent } from './modules/logs/logs.component';
-import { PortfolioComponent } from './modules/portfolio/portfolio.component';
-import { ProfileComponent } from './modules/profile/profile.component';
-import { RestrictedComponent } from './modules/restricted/restricted.component';
+import { HomeComponentComponent } from './modules/home-component/home-component.component';
+import { LoginComponent } from './modules/login/login.component';
 
 const routes: Routes = [
   {
-    path: 'main',
-    component: FrontPageComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path: 'logs',
-    component: LogsComponent
-  },
-  {
-    path: 'portfolio',
-    component: PortfolioComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  },
-  {
-    path: '',
-    redirectTo: 'main',
-    pathMatch: 'full'
+    path: 'home',
+    component: HomeComponentComponent,
+    // canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./modules/home/home-module.module').then((m) => m.HomeModuleModule),
+      },
+    ],
   },
   {
     path: '**',
-    component: RestrictedComponent,
-    pathMatch: 'full'
-  }
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

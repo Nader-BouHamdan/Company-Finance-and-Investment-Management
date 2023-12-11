@@ -1,4 +1,4 @@
-package com.companymanagement.backend.entities;
+package com.companymanagement.backend.controller;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

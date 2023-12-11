@@ -1,0 +1,51 @@
+.menu-button {
+    width: 100%;
+    padding: 10%;
+    display: flex;
+    justify-content: left;
+    font-size: 1.5vh;
+    color: white !important;
+    transition: 200ms;
+    border-radius: 0px;
+    border-top: 1px solid #2c393f54;
+  
+  }
+  
+  .menu-button:hover {
+    background-color: #ffffff2a;
+     transition: 200ms;
+   }
+  
+  .log-menu-button {
+    width: 100%;
+    padding: 10%;
+    display: flex;
+    justify-content: left;
+    font-size: 1.5vh;
+    color: white !important;
+    transition: 200ms;
+    border-radius: 0px;
+    margin-top: 20%;
+    border-top: 1px solid #2c393f54;
+    border-bottom: 1px solid #2c393f54;
+  }
+  
+  .log-menu-button:hover {
+    background-color: #ffffff2a;
+     transition: 200ms;
+   }
+  
+  mat-icon {
+    color: white;
+  }
+  
+  
+  
+  
+  
+  .account img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10%;
+  }
+  

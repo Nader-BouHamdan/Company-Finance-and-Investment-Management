@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public sidenavOpened: boolean = true;
   
-  public toggleSidenav(): void {
-    this.sidenavOpened = !this.sidenavOpened;
-  }
 }
