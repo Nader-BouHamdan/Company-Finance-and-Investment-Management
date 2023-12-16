@@ -1,4 +1,4 @@
-package com.companymanagement.backend.controller;
+package com.companymanagement.backend.model;
 
 import java.sql.Date;
 

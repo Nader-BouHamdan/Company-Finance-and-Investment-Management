@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { UserService } from '../../../core/services/user.service';
-// import { ToastrService } from 'ngx-toastr';
+import { CompanyService } from 'src/app/core/services/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    // private service: UserService,
+    private companyService: CompanyService,
     private route: Router,
-    // private toastrService: ToastrService
+    private toastrService: ToastrService
   ) {
       this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,18 +30,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // public onSubmit(): void {
-  //   this.service.logIn(this.loginForm.value).subscribe(
-  //     (res) => {
-  //       this.data = res;
-  //       if (this.data.status === 'success') {
-  //         this.toastrService.success('Welcome');
-  //         localStorage.setItem('token', this.data.data.token);
-  //           this.route.navigate(['home/main']);
-  //       }
-  //     },
-  //     (err) => {this.toastrService.error('Wrong Credentials!!')}
-  //   );
-  // }
+  public onSubmit(): void {
+    this.companyService.logIn(this.loginForm.value).subscribe(
+      (res) => {
+        this.data = res;
+        if (this.data.status === 'success') {
+          this.toastrService.success('Welcome');
+          localStorage.setItem('token', this.data.data.token);
+            this.route.navigate(['home/main']);
+        }
+      },
+      (err) => {this.toastrService.error('Wrong Credentials!!')}
+    );
+  }
 }
 
