@@ -2,7 +2,6 @@ package com.companymanagement.backend.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.companymanagement.backend.model.Company;
@@ -14,7 +13,7 @@ public class CompanyServiceImplement implements CompanyService{
 
     private final CompanyRepository companyRepository;
 
-    public CompanyServiceImplement(@Autowired CompanyRepository companyRepository) {
+    public CompanyServiceImplement(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 

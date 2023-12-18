@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { Company } from '../interfaces/company';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
-  private baseUrl = `${environment.apiUrl}/companies`;
+  
+  private baseUrl = 'http://localhost:3306/investment_management_system/company';
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +30,10 @@ export class CompanyService {
 
   deleteCompany(companyID: number): Observable<string> {
     return this.http.delete<string>(`${this.baseUrl}/${companyID}`);
+  }
+  
+  login(email: string, password: string): Observable<any> {
+    const loginData = { email, password };
+    return this.http.post<any>(`${this.baseUrl}/validateCredentials`, loginData);
   }
 }

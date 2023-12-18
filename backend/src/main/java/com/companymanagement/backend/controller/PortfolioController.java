@@ -2,7 +2,6 @@ package com.companymanagement.backend.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +20,12 @@ public class PortfolioController {
 
     PortfolioService portfolioService;
 
-    public PortfolioController(@Autowired PortfolioService portfolioService) {
+    public PortfolioController(PortfolioService portfolioService) {
         this.portfolioService = portfolioService;
     }
 
     @GetMapping("/{portfolioID}")
-    public ResponseEntity<String> getPortfolioDetails(@PathVariable("portfolioID") Long portfolioID) {
+    public ResponseEntity<String> getPortfolioDetails(@PathVariable Long portfolioID) {
         return ResponseEntity.ok("Company Recieved Successfully");
     }
 
@@ -48,7 +47,7 @@ public class PortfolioController {
     }
 
     @DeleteMapping("/{portfolioID}")
-    public ResponseEntity<String> deletePortfolioDetails(@PathVariable("portfolioID") Long portfolioID){
+    public ResponseEntity<String> deletePortfolioDetails(@PathVariable Long portfolioID){
         portfolioService.deletePortfolio(portfolioID);
         return ResponseEntity.ok("Company Deleted Successfully");
     }

@@ -1,16 +1,13 @@
 <!-- <div class="form-container"> -->
-  <div class="navbar">
-    <img  routerLinkActive="active" routerLink="/welcome" src="../../../assets/images/logo1.jpg">
-  </div>
 
   <div class="form-container">
     <div class="row">
       <div>
-        <h1 class="logo"><p>ITP |</p><h1 id="portal">Portal</h1></h1>
+        <h1 class="logo">Investment Mangement</h1>
       </div>
     </div>
   <!-- </div> -->
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
     <mat-form-field  appearance="outline">
       <mat-label>Email</mat-label>
       <input

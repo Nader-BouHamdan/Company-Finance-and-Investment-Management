@@ -2,7 +2,6 @@ package com.companymanagement.backend.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.companymanagement.backend.model.Portfolio;
@@ -14,7 +13,7 @@ public class PortfolioServiceImplement implements PortfolioService {
 
     PortfolioRepository portfolioRepository;
 
-    public PortfolioServiceImplement(@Autowired PortfolioRepository portfolioRepository) {
+    public PortfolioServiceImplement(PortfolioRepository portfolioRepository) {
         this.portfolioRepository = portfolioRepository;
     }
 
