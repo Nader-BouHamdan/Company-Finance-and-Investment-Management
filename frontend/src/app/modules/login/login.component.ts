@@ -34,20 +34,29 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    if (this.loginForm.valid) {
-      this.email = this.loginForm.get('email')!.value;
-      this.password = this.loginForm.get('password')!.value;
+      // this.email = this.loginForm.get('email')!.value;
+      // this.password = this.loginForm.get('password')!.value;
 
-      this.companyService.login(this.email, this.password).subscribe(
+      // this.companyService.login(this.email, this.password).subscribe(
+      //   response => {
+      //     this.toastrService.success('Welcome!!');
+      //     this.route.navigate(['home']);
+      //   },
+      //   error => {
+      //     this.toastrService.error('Wrong Credentials!!')
+      //   }
+      // );
+      this.companyService.getAllCompanies().subscribe(
         response => {
-          this.toastrService.success('Welcome!!');
+          this.data = response;
+          this.toastrService.success(this.data);
           this.route.navigate(['home']);
         },
         error => {
-          this.toastrService.error('Wrong Credentials!!')
+            this.data = error;
+            console.log(this.data);
         }
-      );
-    }
+      )
   }
 
 
