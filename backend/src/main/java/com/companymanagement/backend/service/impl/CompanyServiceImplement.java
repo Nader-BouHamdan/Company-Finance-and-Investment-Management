@@ -1,7 +1,7 @@
 package com.companymanagement.backend.service.impl;
 
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.companymanagement.backend.model.Company;
@@ -11,16 +11,27 @@ import com.companymanagement.backend.service.CompanyService;
 @Service
 public class CompanyServiceImplement implements CompanyService{
 
-    private final CompanyRepository companyRepository;
-
-    public CompanyServiceImplement(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
-    }
+    @Autowired
+    private CompanyRepository companyRepository;
 
     @Override
     public String createCompany(Company company) {
-        companyRepository.save(company);
-        return "Successfully created";
+        try {
+            // Log before saving
+            System.out.println("Before saving company: " + company);
+    
+            // Save the company
+            companyRepository.save(company);
+    
+            // Log after saving
+            System.out.println("After saving company: " + company);
+    
+            return "Successfully created";
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+            return "Failed to create company";
+        }
     }
 
     @Override
@@ -31,7 +42,7 @@ public class CompanyServiceImplement implements CompanyService{
 
     @Override
     public List<Company> getAllCompanies() {
-        return companyRepository.findAll();
+        return (List<Company>) companyRepository.findAll();
     }
 
     @Override
@@ -43,6 +54,5 @@ public class CompanyServiceImplement implements CompanyService{
     public String updateCompany(Company company) {
         companyRepository.save(company);
         return "Successfully updated";
-    }
-    
+} 
 }

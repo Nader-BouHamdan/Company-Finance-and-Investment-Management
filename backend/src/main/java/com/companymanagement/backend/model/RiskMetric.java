@@ -1,28 +1,49 @@
 package com.companymanagement.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tbl_riskMetric")
 public class RiskMetric {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private final Long metricID;
-    private String type;
-    private String value;
-    private Long i = (long) 0;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "metric_id", nullable = false)
+    private Long metricID;
 
-    public RiskMetric(Long metricID, String type, String value) {
-        this.metricID = i++;
+    @Column(name = "metric_name", nullable = false)
+    private String metricName;
+
+    @Column(name = "metric_type", nullable = false)
+    private String type;
+
+    @ManyToOne
+    @JoinColumn(name = "portfolio_id")
+    private Portfolio portfolio;
+
+    public RiskMetric(String metricName, String type, Portfolio portfolio) {
+        this.metricName = metricName;
         this.type = type;
-        this.value = value;
+        this.portfolio = portfolio;
     }
 
     public Long getMetricID() {
         return metricID;
+    }
+
+    public String getMetricName() {
+        return metricName;
+    }
+
+    public void setMetricName(String metricName) {
+        this.metricName = metricName;
     }
 
     public String getType() {
@@ -33,12 +54,14 @@ public class RiskMetric {
         this.type = type;
     }
 
-    public String getValue() {
-        return value;
+    public Portfolio getPortfolio() {
+        return portfolio;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
     }
+
+    
 
 }

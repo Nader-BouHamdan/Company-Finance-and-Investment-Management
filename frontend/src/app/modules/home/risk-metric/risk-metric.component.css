@@ -1,0 +1,40 @@
+/* risk-metric.component.css */
+
+/* Apply the same styles from portfolio.component.css */
+
+.risk-metric-container {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+th,
+td {
+  border: 1px solid #333;
+  padding: 12px;
+  text-align: left;
+  color: white;
+}
+
+th {
+  background-color: rgb(71, 137, 161);
+}
+
+h2 {
+  font-size: 36px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 20px;
+}

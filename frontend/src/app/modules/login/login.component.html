@@ -8,6 +8,28 @@
     </div>
   <!-- </div> -->
   <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+
+    <mat-form-field  appearance="outline">
+      <mat-label>Id</mat-label>
+      <input
+      class="mdc-text-field__input"
+        matInput
+        type="number"
+        formControlName="id"
+        name="id"
+        autocomplete="off"
+        required
+      />
+      <mat-error
+        *ngIf="
+          loginForm.controls['id'].invalid &&
+          loginForm.controls['id'].touched
+        "
+      >
+        Please enter a valid id.
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field  appearance="outline">
       <mat-label>Email</mat-label>
       <input
@@ -64,5 +86,13 @@
     >
       Login
     </button>
+    
   </form>
+  <button
+  mat-raised-button
+  routerLink="/register"
+  style="width: 20%;"
+>
+  register
+</button>
 </div>

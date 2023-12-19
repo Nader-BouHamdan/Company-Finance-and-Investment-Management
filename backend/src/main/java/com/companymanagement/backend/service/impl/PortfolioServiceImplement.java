@@ -2,6 +2,7 @@ package com.companymanagement.backend.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.companymanagement.backend.model.Portfolio;
@@ -11,11 +12,8 @@ import com.companymanagement.backend.service.PortfolioService;
 @Service
 public class PortfolioServiceImplement implements PortfolioService {
 
-    PortfolioRepository portfolioRepository;
-
-    public PortfolioServiceImplement(PortfolioRepository portfolioRepository) {
-        this.portfolioRepository = portfolioRepository;
-    }
+    @Autowired
+    private PortfolioRepository portfolioRepository;
 
     @Override
     public String createPortfolio(Portfolio portfolio) {
@@ -31,7 +29,7 @@ public class PortfolioServiceImplement implements PortfolioService {
 
     @Override
     public List<Portfolio> getAllPortfolios() {
-        return portfolioRepository.findAll();
+        return (List<Portfolio>) portfolioRepository.findAll();
     }
 
     @Override

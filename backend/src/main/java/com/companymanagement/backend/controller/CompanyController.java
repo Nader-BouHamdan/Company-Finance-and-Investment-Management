@@ -1,8 +1,9 @@
 package com.companymanagement.backend.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,31 +17,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.companymanagement.backend.model.Company;
 import com.companymanagement.backend.service.CompanyService;
 
-// @CrossOrigin(origins =  "http://localhost:4200/")
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/investment_management_system/company")
 public class CompanyController {
 
+    @Autowired
     private final CompanyService companyService;
 
-    public CompanyController(CompanyService companyService) {
+    
+    public CompanyController(CompanyService companyService) throws SQLException {
         this.companyService = companyService;
     }
-
+    
     // Get Specific Company
-    @GetMapping("{companyID}")
+    @GetMapping("/{companyID}")
     public ResponseEntity<Company> getCompanyDetails(@PathVariable Long companyID) {
         Company company = companyService.getCompany(companyID);
         return ResponseEntity.ok(company);
     }
 
     // Get All Companies
-    @GetMapping()
+    @GetMapping
     public List<Company> getAllCompanyDetails() {
         return companyService.getAllCompanies();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<String> createCompanyDetails(@RequestBody Company company) {
         companyService.createCompany(company);
         return ResponseEntity.ok("Company Created Successfully");
@@ -57,25 +61,5 @@ public class CompanyController {
         companyService.deleteCompany(companyID);
         return ResponseEntity.ok("Company Deleted Successfully");
     }
-
-    @PostMapping("/validateCredentials")
-    public ResponseEntity<?> validateCredentials(@RequestBody Company loginRequest) {
-        Company company = companyService.getCompany(loginRequest.getCompanyID());
-        String email = loginRequest.getEmailID();
-        String password = loginRequest.getPassword();
-
-        if (password.equals(company.getPassword()) && email.equals(company.getEmailID())) {
-            return ResponseEntity.ok(company);
-        } else {
-            System.out.println(HttpStatus.UNAUTHORIZED);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
-    }
-
-    // @GetMapping("{emailID}")
-    // public ResponseEntity<String> getCompanyEmail(@PathVariable("emailID") String emailID) {
-    //     String company = companyService.getCompanyEmail(emailID);
-    //     return ResponseEntity.ok(company);
-    // }
 
 }

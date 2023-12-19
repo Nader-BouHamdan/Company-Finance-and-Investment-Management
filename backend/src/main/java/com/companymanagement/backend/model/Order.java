@@ -1,26 +1,41 @@
 package com.companymanagement.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tbl_order")
 public class Order {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private final Long logID;
-    private final String orderType;
-    private final Long quantity;
-    private final Long price;
-    private Long i = (long) 0;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "log_id", nullable = false)
+    private Long logID;
 
-    public Order(String orderType, Long quantity, Long price) {
-        this.logID = i++;
+    @Column(name = "buySell", nullable = false)
+    private String orderType;
+
+    @Column(name = "quantity", nullable = false)
+    private Long quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "portfolio_id")
+    private Portfolio portfolio;
+
+    @ManyToOne
+    @JoinColumn(name = "instrument_id")
+    private FinancialInstrument financialInstrument;
+
+    public Order(String orderType, Long quantity) {
         this.orderType = orderType;
         this.quantity = quantity;
-        this.price = price;
     }
 
     public Long getLogID() {
@@ -35,8 +50,5 @@ public class Order {
         return quantity;
     }
 
-    public Long getPrice() {
-        return price;
-    }
 
 }

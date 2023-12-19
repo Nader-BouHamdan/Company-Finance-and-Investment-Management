@@ -1,0 +1,96 @@
+/* portfolio.component.css */
+
+h2 {
+    font-size: 36px; 
+    color: #fff; 
+    margin-bottom: 20px; 
+}
+
+h3 {
+    font-size: 30px; 
+    color: #fff; 
+    margin-bottom: 20px; 
+}
+
+.company-details {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .portfolio-container {
+    margin-top: 20px;
+  }
+  
+  .add-trade-form,
+  .trades-table,
+  .risk-section {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: rgb(71, 137, 161);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  
+  th, td {
+    border: 1px solid #333;
+    padding: 12px;
+    text-align: left;
+    color: white;
+  }
+  
+  th {
+    background-color: rgb(71, 137, 161);
+  }
+  
+  tr:hover {
+    background-color: rgb(71, 137, 161);
+  }
+  
+  .risk-section {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  

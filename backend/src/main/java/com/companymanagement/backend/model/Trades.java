@@ -2,24 +2,43 @@ package com.companymanagement.backend.model;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tbl_trades")
 public class Trades {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private final Long tradeID;
-    private Date timeStamp;
-    private Long price;
-    private Long quantity;
-    private Long i = (long) 0;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "trade_id", nullable = false)
+    private Long tradeID;
 
-    public Trades(Long tradeID, Date timeStamp, Long price, Long quantity) {
-        this.tradeID = i++;
+    @Column(name = "date", nullable = false)
+    private Date timeStamp;
+
+    @Column(name = "price", nullable = false)
+    private Long price;
+
+    @Column(name = "quantity", nullable = false)
+    private Long quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "portfolio_id")
+    private Portfolio portfolio;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    public Trades(Date timeStamp, Long price, Long quantity) {
         this.timeStamp = timeStamp;
         this.price = price;
         this.quantity = quantity;

@@ -1,24 +1,34 @@
 package com.companymanagement.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tbl_financialInstrument")
 public class FinancialInstrument {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private final Long instrumentID;
-    private String instrumentType;
-    private String asset;
-    private Long i = (long) 0;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "instrument_id", nullable = false)
+    private Long instrumentID;
 
-    public FinancialInstrument(Long instrumentID, String instrumentType, String asset) {
-        this.instrumentID = i++;
+    @Column(name = "typeFin", nullable = false)
+    private String instrumentType;// equity debt derivative
+
+    @Column(name = "issuer", nullable = false)
+    private String issuer;
+
+    @Column(name= "price", nullable = false)
+    private Long price;
+    
+    public FinancialInstrument(String instrumentType, String issuer, Long price) {
         this.instrumentType = instrumentType;
-        this.asset = asset;
+        this.issuer = issuer;
+        this.price = price;
     }
 
     public Long getInstrumentID() {
@@ -33,12 +43,22 @@ public class FinancialInstrument {
         this.instrumentType = instrumentType;
     }
 
-    public String getAsset() {
-        return asset;
+    public String getIssuer() {
+        return issuer;
     }
 
-    public void setAsset(String asset) {
-        this.asset = asset;
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    
 
 }

@@ -8,7 +8,7 @@ import { Company } from '../interfaces/company';
 })
 export class CompanyService {
   
-  private baseUrl = 'http://localhost:3306/investment_management_system/company';
+  private baseUrl = 'http://localhost:8080/investment_management_system/company';
 
   constructor(private http: HttpClient) { }
 
@@ -17,23 +17,31 @@ export class CompanyService {
   }
 
   getAllCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>(this.baseUrl);
+    return this.http.get<Company[]>(`${this.baseUrl}`);
   }
 
-  createCompany(company: Company): Observable<string> {
-    return this.http.post<string>(this.baseUrl, company);
+  createCompany(company: Company): Observable<any> {
+    console.log('Data to send:', company);
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.post<string>(`${this.baseUrl}/create`, JSON.stringify(company), { headers , responseType: 'text' as 'json'});
   }
 
   updateCompany(company: Company): Observable<string> {
-    return this.http.put<string>(this.baseUrl, company);
+    return this.http.put<string>(`${this.baseUrl}`, company);
   }
 
   deleteCompany(companyID: number): Observable<string> {
     return this.http.delete<string>(`${this.baseUrl}/${companyID}`);
   }
-  
-  login(email: string, password: string): Observable<any> {
-    const loginData = { email, password };
-    return this.http.post<any>(`${this.baseUrl}/validateCredentials`, loginData);
+
+  isLoggedIn() {
+    return localStorage.getItem('token') != null && localStorage.getItem('token') == "Access";
   }
+
+  getToken() {
+    return localStorage.getItem('token') != null
+      ? localStorage.getItem('token')
+      : '';
+  }
+
 }

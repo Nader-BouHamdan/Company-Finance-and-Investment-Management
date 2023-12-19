@@ -1,0 +1,24 @@
+<h2>Your Trades</h2>
+
+<div class="trades-container">
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trade of trades">
+          <td>{{ trade.symbol }}</td>
+          <td>{{ trade.quantity }}</td>
+          <td>{{ trade.price | currency }}</td>
+          <td>{{ trade.date | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

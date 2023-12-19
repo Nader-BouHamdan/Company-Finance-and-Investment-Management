@@ -5,6 +5,9 @@ import { LogsComponent } from './logs/logs.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RestrictedComponent } from './restricted/restricted.component';
+import { RiskMetricComponent } from './risk-metric/risk-metric.component';
+import { TradesComponent } from './trades/trades.component';
+import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   {
@@ -22,6 +25,18 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'riskMetric',
+    component: RiskMetricComponent
+  },
+  {
+    path: 'trades',
+    component: TradesComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
   },
   {
     path: '',

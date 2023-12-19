@@ -10,20 +10,18 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@Table(name = "tbl_Company", uniqueConstraints = @UniqueConstraint(name = "email_id_unique", columnNames = "email_address"))
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "tbl_company", uniqueConstraints = @UniqueConstraint(name = "email_id_unique", columnNames = "email_address"))
 public class Company {
 
         @Id
-        @SequenceGenerator(name = "company_sequence", sequenceName = "company_sequence", allocationSize = 1)
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_sequence")
+        @SequenceGenerator(name = "company_sequence", sequenceName = "company_sequence", allocationSize = 1)
         @Column(name = "company_id", nullable = false)
         private Long companyID;
 

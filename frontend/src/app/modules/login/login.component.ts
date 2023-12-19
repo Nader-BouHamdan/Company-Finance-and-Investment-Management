@@ -10,16 +10,14 @@ import { Company } from 'src/app/core/interfaces/company';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
   public loginForm: FormGroup;
-  private data: any;
   public email: string = '';
   public password: string = '';
-
-  ngOnInit(): void {
-    localStorage.clear();
-  }
+  public id!: number;
+  databasePassword: any;
+  myData!: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,36 +26,42 @@ export class LoginComponent implements OnInit {
     private toastrService: ToastrService
   ) {
       this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      email: ['', [Validators.email]],
+      password: [''],
+      id: ['']
     });
   }
 
-  login(): void {
-      // this.email = this.loginForm.get('email')!.value;
-      // this.password = this.loginForm.get('password')!.value;
-
-      // this.companyService.login(this.email, this.password).subscribe(
-      //   response => {
-      //     this.toastrService.success('Welcome!!');
-      //     this.route.navigate(['home']);
-      //   },
-      //   error => {
-      //     this.toastrService.error('Wrong Credentials!!')
-      //   }
-      // );
-      this.companyService.getAllCompanies().subscribe(
-        response => {
-          this.data = response;
-          this.toastrService.success(this.data);
-          this.route.navigate(['home']);
-        },
-        error => {
-            this.data = error;
-            console.log(this.data);
-        }
-      )
+  ngOnInit(): void {
+    localStorage.clear();
   }
+
+  login(): void {
+      this.email = this.loginForm.get('email')!.value;
+      this.password = this.loginForm.get('password')!.value;
+      this.id = this.loginForm.get('id')!.value;
+      console.log(this.id)
+
+      this.companyService.getCompany(this.id).subscribe(
+        response => {
+          this.myData = response;
+          console.log(this.myData);
+          if(this.password.match(this.myData.password)  && this.email.match(this.myData.email) ) {
+            localStorage.setItem('token', "Access");
+            this.toastrService.success('Welcome!!');
+            this.route.navigate(['/home']);
+            }
+          },
+        error => {
+          console.log(error)
+          this.toastrService.error('Wrong Credentials!!')
+        }
+      );
+  }
+
+  // login(): void {
+  //   this.route.navigate(['home']);
+  // }
 
 
   // public onSubmit(): void {

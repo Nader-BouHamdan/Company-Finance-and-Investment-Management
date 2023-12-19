@@ -1,0 +1,24 @@
+<!-- risk-metric.component.html -->
+
+<h2>Risk Metrics</h2>
+
+<div class="risk-metric-container">
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Calculation Type</th>
+          <th>Calculated Risk</th>
+          <th>Risk Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let metric of riskMetrics">
+          <td>{{ metric.calculationType }}</td>
+          <td>{{ metric.calculatedRisk | currency }}</td>
+          <td>{{ metric.riskType }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,6 +1,6 @@
 export interface Company {
-    company_id: number;
-    company_name: string;
-    email_address: string;
-    password: string;
+    companyID?: number;
+    companyName?: string;
+    emailID?: string;
+    password?: string;
 }
