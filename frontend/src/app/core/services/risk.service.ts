@@ -25,7 +25,7 @@ export class RiskMetricService {
   }
 
   updateRiskMetric(RiskMetric: RiskMetric): Observable<string> {
-    return this.http.put<string>(this.baseUrl, RiskMetric);
+    return this.http.put<string>(`${this.baseUrl}/update`, RiskMetric);
   }
 
   deleteRiskMetric(RiskMetricID: number): Observable<string> {

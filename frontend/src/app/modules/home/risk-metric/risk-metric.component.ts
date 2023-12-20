@@ -1,6 +1,8 @@
 // risk-metric.component.ts
 
 import { Component } from '@angular/core';
+import { RiskMetric } from 'src/app/core/interfaces/risk';
+import { RiskMetricService } from 'src/app/core/services/risk.service';
 
 @Component({
   selector: 'app-risk-metric',
@@ -8,9 +10,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./risk-metric.component.css'],
 })
 export class RiskMetricComponent {
-  riskMetrics = [
-    { calculationType: 'Type A', calculatedRisk: 500, riskType: 'High' },
-    { calculationType: 'Type B', calculatedRisk: 200, riskType: 'Medium' },
-    // Add more mock risk metrics as needed
-  ];
+  riskMetrics!: RiskMetric[]
+  data: any;
+
+  constructor(private riskService: RiskMetricService){
+    this.riskService.getAllRiskMetric().subscribe(
+      response => {this.data = response; this.riskMetrics = this.data}
+    );
+  }
 }

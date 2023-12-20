@@ -3,4 +3,6 @@ export interface Trades {
     timeStamp: Date;
     price: number;
     quantity: number;
+    orderId: number;
+    portfolioId: number;
 }

@@ -25,7 +25,7 @@ export class PortfolioService {
   }
 
   updatePortfolio(Portfolio: Portfolio): Observable<string> {
-    return this.http.put<string>(this.baseUrl, Portfolio);
+    return this.http.put<string>(`${this.baseUrl}/update`, Portfolio);
   }
 
   deletePortfolio(PortfolioID: number): Observable<string> {

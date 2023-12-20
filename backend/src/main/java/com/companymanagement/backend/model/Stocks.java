@@ -8,13 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_financialInstrument")
-public class FinancialInstrument {
+@Table(name = "tbl_stocks")
+public class Stocks {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "instrument_id", nullable = false)
-    private Long instrumentID;
+    @Column(name = "stock_id", nullable = false)
+    private Long stockID;
 
     @Column(name = "typeFin", nullable = false)
     private String instrumentType;// equity debt derivative
@@ -25,14 +25,17 @@ public class FinancialInstrument {
     @Column(name= "price", nullable = false)
     private Long price;
     
-    public FinancialInstrument(String instrumentType, String issuer, Long price) {
+    public Stocks() {
+    }
+
+    public Stocks(String instrumentType, String issuer, Long price) {
         this.instrumentType = instrumentType;
         this.issuer = issuer;
         this.price = price;
     }
 
     public Long getInstrumentID() {
-        return instrumentID;
+        return stockID;
     }
 
     public String getInstrumentType() {

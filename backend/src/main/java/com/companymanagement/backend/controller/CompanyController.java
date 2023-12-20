@@ -50,7 +50,7 @@ public class CompanyController {
         return ResponseEntity.ok("Company Created Successfully");
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<String> updateCompanyDetails(@RequestBody Company company) {
         companyService.updateCompany(company);
         return ResponseEntity.ok("Company Updated Successfully");

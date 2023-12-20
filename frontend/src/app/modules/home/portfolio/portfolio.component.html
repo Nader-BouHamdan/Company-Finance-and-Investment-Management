@@ -3,9 +3,8 @@
 <h2>Your Investment Portfolio</h2>
 
 <div class="company-details">
-    <h3>Company Name</h3>
-    <p>Address: 123 Main St, Cityville</p>
-    <p>Contact: info.com</p>
+  <h3>{{ company?.companyName }}</h3>
+  <p>Email ID: {{ company?.emailID }}</p>
   </div>
   
   <div class="portfolio-container">
@@ -15,19 +14,17 @@
       <table>
         <thead>
           <tr>
-            <th>Symbol</th>
-            <th>Quantity</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Date</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let trade of trades">
-            <td>{{ trade.symbol }}</td>
+            <td>{{ trade.price | currency}}</td>
             <td>{{ trade.quantity }}</td>
-            <td>{{ trade.price | currency }}</td>
-            <td>{{ trade.date | date }}</td>
+            <td>{{ trade.timeStamp | date }}</td>
             <td>
               <button (click)="removeTrade(trade)">Remove</button>
             </td>
@@ -39,28 +36,21 @@
     <!-- Add Trade Form -->
     <div class="add-trade-form">
       <h3>Add New Trade</h3>
-      <form (ngSubmit)="addTrade()">
-        <div class="form-group">
-          <label for="symbol">Symbol:</label>
-          <input type="text" id="symbol" name="symbol" [(ngModel)]="newTrade.symbol" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="quantity">Quantity:</label>
-          <input type="number" id="quantity" name="quantity" [(ngModel)]="newTrade.quantity" required>
-        </div>
-  
-        <div class="form-group">
+      <form [formGroup]="tradesForm" (ngSubmit)="onSubmit()">
+        <div>
           <label for="price">Price:</label>
-          <input type="number" id="price" name="price" [(ngModel)]="newTrade.price" required>
+          <input type="number" id="price" formControlName="price" />
         </div>
-  
-        <div class="form-group">
+        <div>
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" formControlName="quantity" />
+        </div>
+        <div>
           <label for="date">Date:</label>
-          <input type="date" id="date" name="date" [(ngModel)]="newTrade.date" required>
+          <input type="date" id="date" formControlName="date" />
         </div>
-  
-        <button type="submit">Add Trade</button>
+    
+        <button type="submit" mat-raised-button color="primary">Add Trade</button>
       </form>
     </div>
   
@@ -69,8 +59,8 @@
       <h3>Risk Information</h3>
       <p>Tolerance Level: {{ riskTolerancePercentage }}%</p>
       <p>Calculation Type: Quantity * Price</p>
-      <p>Calculated Risk: {{ calculateTotalRisk() | currency }}</p>
-      <p>Risk Threshold: {{ calculateRiskThreshold() | currency }}</p>
+      <p>Calculated Risk: {{ calculateTotalRisk() }}</p>
+      <p>Risk Threshold: {{ calculateRiskThreshold() }}</p>
       <p *ngIf="isRiskExceeded()">Risk Exceeded!</p>
     </div>
   </div>

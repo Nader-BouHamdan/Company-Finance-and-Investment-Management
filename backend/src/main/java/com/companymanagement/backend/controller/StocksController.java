@@ -11,44 +11,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.companymanagement.backend.model.Order;
-import com.companymanagement.backend.service.OrderService;
+import com.companymanagement.backend.model.Stocks;
+import com.companymanagement.backend.service.StocksService;
 
 @RestController
-@RequestMapping("/investment_management_system/Order")
-public class OrderController {
+@RequestMapping("/investment_management_system/Stocks")
+public class StocksController {
 
-    OrderService OrderService;
+    StocksService StocksService;
 
-    public OrderController(OrderService OrderService) {
-        this.OrderService = OrderService;
+    public StocksController(StocksService StocksService) {
+        this.StocksService = StocksService;
     }
 
-    @GetMapping("/{OrderID}")
-    public ResponseEntity<String> getOrderDetails(@PathVariable Long OrderID) {
+    @GetMapping("/{StocksID}")
+    public ResponseEntity<String> getStocksDetails(@PathVariable Long StocksID) {
         return ResponseEntity.ok("Company Recieved Successfully");
     }
 
     @GetMapping()
-    public List<Order> getAllOrderDetails() {
-        return OrderService.getAllOrders();
+    public List<Stocks> getAllStocksDetails() {
+        return StocksService.getAllStockss();
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrderDetails(@RequestBody Order Order){
-        OrderService.createOrder(Order);
+    public ResponseEntity<String> createStocksDetails(@RequestBody Stocks Stocks){
+        StocksService.createStocks(Stocks);
         return ResponseEntity.ok("Company Created Successfully");
     }
 
     @PutMapping
-    public ResponseEntity<String> updateOrderDetails(@RequestBody Order Order){
-        OrderService.updateOrder(Order);
+    public ResponseEntity<String> updateStocksDetails(@RequestBody Stocks Stocks){
+        StocksService.updateStocks(Stocks);
         return ResponseEntity.ok("Company Updated Successfully");
     }
 
-    @DeleteMapping("/{OrderID}")
-    public ResponseEntity<String> deleteOrderDetails(@PathVariable Long OrderID){
-        OrderService.deleteOrder(OrderID);
+    @DeleteMapping("/{StocksID}")
+    public ResponseEntity<String> deleteStocksDetails(@PathVariable Long StocksID){
+        StocksService.deleteStocks(StocksID);
         return ResponseEntity.ok("Company Deleted Successfully");
     }
 }

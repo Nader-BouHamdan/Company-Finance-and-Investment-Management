@@ -15,7 +15,7 @@ import com.companymanagement.backend.model.Collateral;
 import com.companymanagement.backend.service.CollateralService;
 
 @RestController
-@RequestMapping("/Collateral")
+@RequestMapping("/investment_management_system/Collateral")
 public class CollateralController {
 
     CollateralService CollateralService;

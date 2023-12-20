@@ -29,8 +29,11 @@ public class Order {
     private Portfolio portfolio;
 
     @ManyToOne
-    @JoinColumn(name = "instrument_id")
-    private FinancialInstrument financialInstrument;
+    @JoinColumn(name = "stock_id")
+    private Stocks stocks;
+
+    public Order() {
+    }
 
     public Order(String orderType, Long quantity) {
         this.orderType = orderType;

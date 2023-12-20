@@ -34,6 +34,9 @@ public class Portfolio {
     private Company comapny;
 
 
+    public Portfolio() {
+    }
+
     public Portfolio(String portfolioName,Date createdDate, Long totalValue, Company company) {
         this.portfolioName = portfolioName;
         this.createdDate = createdDate;

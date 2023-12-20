@@ -27,7 +27,8 @@ export class CompanyService {
   }
 
   updateCompany(company: Company): Observable<string> {
-    return this.http.put<string>(`${this.baseUrl}`, company);
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.put<string>(`${this.baseUrl}/update`, JSON.stringify(company), { headers , responseType: 'text' as 'json'});
   }
 
   deleteCompany(companyID: number): Observable<string> {
@@ -35,7 +36,7 @@ export class CompanyService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('token') != null && localStorage.getItem('token') == "Access";
+    return localStorage.getItem('token') != null;
   }
 
   getToken() {

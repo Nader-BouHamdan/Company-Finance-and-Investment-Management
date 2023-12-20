@@ -1,5 +1,6 @@
 package com.companymanagement.backend.model;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -24,7 +25,7 @@ public class Trades {
     private Date timeStamp;
 
     @Column(name = "price", nullable = false)
-    private Long price;
+    private BigDecimal price;
 
     @Column(name = "quantity", nullable = false)
     private Long quantity;
@@ -37,7 +38,11 @@ public class Trades {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    public Trades(Date timeStamp, Long price, Long quantity) {
+    public Trades() {
+        
+    }
+
+    public Trades(Date timeStamp, BigDecimal price, Long quantity) {
         this.timeStamp = timeStamp;
         this.price = price;
         this.quantity = quantity;
@@ -55,11 +60,11 @@ public class Trades {
         this.timeStamp = timeStamp;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

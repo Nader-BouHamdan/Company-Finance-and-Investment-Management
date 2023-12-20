@@ -28,6 +28,11 @@ public class RiskMetric {
     @JoinColumn(name = "portfolio_id")
     private Portfolio portfolio;
 
+    
+
+    public RiskMetric() {
+    }
+
     public RiskMetric(String metricName, String type, Portfolio portfolio) {
         this.metricName = metricName;
         this.type = type;

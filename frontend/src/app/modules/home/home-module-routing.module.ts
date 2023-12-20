@@ -3,17 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { LogsComponent } from './logs/logs.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
-import { ProfileComponent } from './profile/profile.component';
 import { RestrictedComponent } from './restricted/restricted.component';
 import { RiskMetricComponent } from './risk-metric/risk-metric.component';
 import { TradesComponent } from './trades/trades.component';
 import { OrderComponent } from './order/order.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
-  {
-    path: 'main',
-    component: FrontPageComponent
-  },
   {
     path: 'logs',
     component: LogsComponent
@@ -21,10 +17,6 @@ const routes: Routes = [
   {
     path: 'portfolio',
     component: PortfolioComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
   },
   {
     path: 'riskMetric',
@@ -39,8 +31,12 @@ const routes: Routes = [
     component: OrderComponent
   },
   {
+    path: 'edit',
+    component: EditUserComponent
+  },
+  {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'portfolio',
     pathMatch: 'full'
   },
   {

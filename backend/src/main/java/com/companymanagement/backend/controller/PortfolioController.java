@@ -15,7 +15,7 @@ import com.companymanagement.backend.model.Portfolio;
 import com.companymanagement.backend.service.PortfolioService;
 
 @RestController
-@RequestMapping("/portfolio")
+@RequestMapping("/investment_management_system/portfolio")
 public class PortfolioController {
 
     PortfolioService portfolioService;

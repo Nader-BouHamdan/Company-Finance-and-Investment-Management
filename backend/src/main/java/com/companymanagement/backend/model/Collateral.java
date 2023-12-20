@@ -35,6 +35,9 @@ public class Collateral {
     @JoinColumn(name = "company_id")
     private Company company;
 
+    public Collateral() {
+    }
+
     public Collateral(Long amount, String type, String desc) {
         this.amount = amount;
         this.type = type;

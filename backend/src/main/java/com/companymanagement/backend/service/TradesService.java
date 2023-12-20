@@ -10,5 +10,6 @@ public interface TradesService {
     String deleteTrades(Long TradesId);
     Trades getTrades(Long TradesId);
     List<Trades> getAllTradess();
+    
 }
 

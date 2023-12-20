@@ -1,5 +1,5 @@
-export interface Instrument {
-    instrumentId: number;
+export interface Stocks {
+    stocksId: number;
     asset: string;
     type: string;
     issuer: string;

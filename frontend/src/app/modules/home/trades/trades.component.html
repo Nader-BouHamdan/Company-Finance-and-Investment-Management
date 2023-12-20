@@ -5,20 +5,46 @@
     <table>
       <thead>
         <tr>
-          <th>Symbol</th>
-          <th>Quantity</th>
           <th>Price</th>
+          <th>Quantity</th>
           <th>Date</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let trade of trades">
-          <td>{{ trade.symbol }}</td>
-          <td>{{ trade.quantity }}</td>
-          <td>{{ trade.price | currency }}</td>
-          <td>{{ trade.date | date }}</td>
+          <td>{{ this.trade.price | currency }}</td>
+          <td>{{ this.trade.quantity }}</td>
+          <td>{{ this.trade.timeStamp | date}}</td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <!-- <div class="add-trade-form">
+    <h3>Add New Trade</h3>
+    <form [formGroup]="tradesForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" formControlName="price" />
+      </div>
+      <div>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" formControlName="quantity" />
+      </div>
+      <div>
+        <label for="date">Date:</label>
+        <input type="date" id="date" formControlName="date" />
+      </div>
+      <div>
+        <label for="orderid">OrderID:</label>
+        <input type="number" id="orderid" formControlName="orderid" />
+      </div>
+      <div>
+        <label for="portfolioid">portfolioid:</label>
+        <input type="number" id="portfolioid" formControlName="portfolioid" />
+      </div>
+  
+      <button type="submit" mat-raised-button color="primary">Add Trade</button>
+    </form>
+  </div> -->
   

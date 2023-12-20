@@ -1,37 +1,43 @@
 .form-container {
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    padding-top: 15%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #555;
 }
 
+.form-wrapper {
+    background-color: white;
+    padding: 20px; /* Adjust padding as needed */
+    border-radius: 10px; /* Optional: add border-radius for rounded corners */
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Adjust width as needed */
+    color: white;
+}
 
 mat-form-field {
     flex: 1;
     margin-right: 10px;
-    margin-bottom: 5px;
-}
-
-h2 {
-    color: black !important;
-    justify-content: center;
-    align-items: center;
-    font-size: 200%;
-}
-
-.row {
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    width: 50%;
-    color: white;
 }
 
 button {
     flex: 1;
     margin-right: 10px;
-    margin-bottom: 5px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

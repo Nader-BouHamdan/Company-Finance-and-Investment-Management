@@ -7,16 +7,14 @@
     <table>
       <thead>
         <tr>
-          <th>Calculation Type</th>
-          <th>Calculated Risk</th>
-          <th>Risk Type</th>
+          <th>Metric Name</th>
+          <th>Metric Level</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let metric of riskMetrics">
-          <td>{{ metric.calculationType }}</td>
-          <td>{{ metric.calculatedRisk | currency }}</td>
-          <td>{{ metric.riskType }}</td>
+          <td>{{ metric.metricName }}</td>
+          <td>{{ metric.type }}</td>
         </tr>
       </tbody>
     </table>

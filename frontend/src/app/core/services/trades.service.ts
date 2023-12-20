@@ -17,19 +17,25 @@ export class TradesService {
   }
 
   getAllTrades(): Observable<Trades[]> {
-    return this.http.get<Trades[]>(this.baseUrl);
+    return this.http.get<Trades[]>(`${this.baseUrl}/trades`);
   }
 
-  createTrades(Trades: Trades): Observable<string> {
-    return this.http.post<string>(this.baseUrl, Trades);
+  createTrades(Trades: Trades): Observable<any> {
+    console.log(Trades)
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.post<string>(`${this.baseUrl}/create`, JSON.stringify(Trades), { headers , responseType: 'text' as 'json'});
   }
 
   updateTrades(Trades: Trades): Observable<string> {
-    return this.http.put<string>(this.baseUrl, Trades);
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.put<string>(`${this.baseUrl}/update`, JSON.stringify(Trades), { headers , responseType: 'text' as 'json'});
   }
 
   deleteTrades(TradesID: number): Observable<string> {
-    return this.http.delete<string>(`${this.baseUrl}/${TradesID}`);
+    const headers = { 'Content-Type': 'application/json' };
+    const options = { headers, responseType: 'text' as 'json' };
+    return this.http.delete<string>(`${this.baseUrl}/${TradesID}`, { headers , responseType: 'text' as 'json'});
+    
   }
 
 }

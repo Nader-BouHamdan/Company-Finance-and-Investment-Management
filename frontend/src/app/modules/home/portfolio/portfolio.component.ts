@@ -1,6 +1,11 @@
 // portfolio.component.ts
 
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Company } from 'src/app/core/interfaces/company';
+import { Trades } from 'src/app/core/interfaces/trades';
+import { CompanyService } from 'src/app/core/services/company.service';
+import { TradesService } from 'src/app/core/services/trades.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -8,21 +13,73 @@ import { Component } from '@angular/core';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent {
-  trades = [
-    { symbol: 'AAPL', quantity: 10, price: 150.25, date: new Date('2023-01-01') },
-    { symbol: 'GOOGL', quantity: 5, price: 2500.75, date: new Date('2023-02-15') },
-    // Add more mock trades as needed
-  ];
+  trades!: Trades[];
+
+  token: any;
+  company: any;
+  data: any;
+
+  tradesForm!: FormGroup
 
   companyBudget = 10000;
   riskTolerancePercentage = 50;
 
-  newTrade = {
-    symbol: '',
-    quantity: 0,
+  newTrade: Trades ={
+    tradeId: 0,
+    timeStamp: new Date(),
     price: 0,
-    date: new Date()
+    quantity: 0,
+    orderId: 0,
+    portfolioId: 0,
   };
+
+  constructor(private companyService: CompanyService, private tradesService: TradesService, private formBuilder: FormBuilder){
+    this.token = this.companyService.getToken();
+    this.companyService.getCompany(this.token).subscribe(
+      response => {this.data = response; this.company = this.data; console.log(this.company)}
+    );
+    this.tradesService.getAllTrades().subscribe(
+      response => {this.data = response; this.trades = this.data; console.log(this.trades)}
+    );
+
+      this.initForm();
+  }
+
+  initForm() {
+    this.tradesForm = this.formBuilder.group({
+      price: [''],
+      quantity: [''],
+      date: [''],
+    });
+  }
+
+  onSubmit() {
+    if (this.tradesForm.valid) {
+      const price = this.tradesForm.get('price')!.value;
+      const quantity = this.tradesForm.get('quantity')!.value;
+      const date = this.tradesForm.get('date')!.value;
+
+      const formData: Trades= {
+        tradeId: 0,
+        price: price,
+        quantity: quantity,
+        timeStamp: date,
+        orderId: 1,
+        portfolioId: 1
+      }
+
+      console.log(formData);
+      this.tradesService.createTrades(formData).subscribe(
+        response => {
+          console.log('Trade added successfully', response);
+        },
+        error => {
+          console.error('Error adding trade', error);
+        }
+      );
+    }
+  }
+
 
   calculateRisk(trade: any): number {
     return trade.quantity * trade.price;
@@ -30,6 +87,7 @@ export class PortfolioComponent {
 
   calculateTotalRisk(): number {
     return this.trades.reduce((totalRisk, trade) => totalRisk + this.calculateRisk(trade), 0);
+    return 0;
   }
 
   calculateRiskThreshold(): number {
@@ -41,34 +99,23 @@ export class PortfolioComponent {
   }
 
   addTrade(): void {
-    if (this.validateTrade()) {
-      this.trades.push({ ...this.newTrade });
-      this.resetNewTrade();
-    }
+    this.tradesService.createTrades(this.newTrade).subscribe();
+    this.resetNewTrade();
   }
 
   removeTrade(trade: any): void {
-    const index = this.trades.indexOf(trade);
-    if (index !== -1) {
-      this.trades.splice(index, 1);
-    }
-  }
-
-  validateTrade(): boolean {
-    const isValidSymbol = this.newTrade.symbol && this.newTrade.symbol.trim() !== '';
-    const isValidQuantity = this.newTrade.quantity !== null && this.newTrade.quantity > 0;
-    const isValidPrice = this.newTrade.price !== null && this.newTrade.price > 0;
-    const isValidDate = this.newTrade.date !== null;
-
-    return !!isValidSymbol && !!isValidQuantity && !!isValidPrice && !!isValidDate;;
+    console.log(trade.tradeID);
+    this.tradesService.deleteTrades(trade.tradeID).subscribe();
   }
 
   resetNewTrade(): void {
     this.newTrade = {
-      symbol: '',
-      quantity: 0,
+      tradeId: 0,
+      timeStamp: new Date(),
       price: 0,
-      date: new Date()
+      quantity: 0,
+      orderId: 0,
+      portfolioId: 0,
     };
   }
 }

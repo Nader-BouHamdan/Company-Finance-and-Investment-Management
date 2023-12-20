@@ -25,7 +25,7 @@ export class CollateralService {
   }
 
   updateCollateral(Collateral: Collateral): Observable<string> {
-    return this.http.put<string>(this.baseUrl, Collateral);
+    return this.http.put<string>(`${this.baseUrl}/update`, Collateral);
   }
 
   deleteCollateral(CollateralID: number): Observable<string> {

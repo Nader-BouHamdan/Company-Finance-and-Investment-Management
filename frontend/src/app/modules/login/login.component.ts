@@ -47,7 +47,7 @@ export class LoginComponent{
           this.myData = response;
           console.log(this.myData);
           if(this.password.match(this.myData.password)  && this.email.match(this.myData.email) ) {
-            localStorage.setItem('token', "Access");
+            localStorage.setItem('token', this.id.toString());
             this.toastrService.success('Welcome!!');
             this.route.navigate(['/home']);
             }

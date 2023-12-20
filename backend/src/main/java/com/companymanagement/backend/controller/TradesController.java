@@ -2,7 +2,9 @@ package com.companymanagement.backend.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,14 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.companymanagement.backend.model.Trades;
 import com.companymanagement.backend.service.TradesService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/Trades")
+@RequestMapping("/investment_management_system/Trades")
 public class TradesController {
 
-    TradesService TradesService;
+    @Autowired
+    private final TradesService TradesService;
 
-    public TradesController(TradesService TradesService) {
-        this.TradesService = TradesService;
+    public TradesController(TradesService tradesService) {
+        this.TradesService = tradesService;
     }
 
     @GetMapping("/{TradesID}")
@@ -29,12 +33,12 @@ public class TradesController {
         return ResponseEntity.ok("Company Recieved Successfully");
     }
 
-    @GetMapping()
+    @GetMapping("/trades")
     public List<Trades> getAllTradesDetails() {
         return TradesService.getAllTradess();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<String> createTradesDetails(@RequestBody Trades Trades){
         TradesService.createTrades(Trades);
         return ResponseEntity.ok("Company Created Successfully");

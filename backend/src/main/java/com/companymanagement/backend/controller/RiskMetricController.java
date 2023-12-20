@@ -15,7 +15,7 @@ import com.companymanagement.backend.model.RiskMetric;
 import com.companymanagement.backend.service.RiskMetricService;
 
 @RestController
-@RequestMapping("/RiskMetric")
+@RequestMapping("/investment_management_system/RiskMetric")
 public class RiskMetricController {
 
     RiskMetricService RiskMetricService;
