@@ -39,7 +39,7 @@ public class CompanyController {
     }
 
     // Get All Companies
-    @GetMapping
+    @GetMapping("/getAll")
     public List<Company> getAllCompanyDetails() {
         return companyService.getAllCompanies();
     }

@@ -17,18 +17,9 @@ public class CompanyServiceImplement implements CompanyService{
     @Override
     public String createCompany(Company company) {
         try {
-            // Log before saving
-            System.out.println("Before saving company: " + company);
-    
-            // Save the company
             companyRepository.save(company);
-    
-            // Log after saving
-            System.out.println("After saving company: " + company);
-    
             return "Successfully created";
         } catch (Exception e) {
-            // Log the exception
             e.printStackTrace();
             return "Failed to create company";
         }
