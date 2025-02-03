@@ -86,7 +86,7 @@ export class PortfolioComponent {
   }
 
   calculateTotalRisk(): number {
-    return this.trades.reduce((totalRisk, trade) => totalRisk + this.calculateRisk(trade), 0);
+    // return this.trades.reduce((totalRisk, trade) => totalRisk + this.calculateRisk(trade), 0);
     return 0;
   }
 
